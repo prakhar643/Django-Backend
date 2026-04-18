@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Import Customers CSV</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Upload</button>
+</form>
+
+{% if result %}
+    <h3>Results:</h3>
+    <p>Created: {{ result.created }}</p>
+    <p>Updated: {{ result.updated }}</p>
+
+    {% if result.errors %}
+        <h4>Errors:</h4>
+        <ul>
+            {% for error in result.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+</body>
+</html>
